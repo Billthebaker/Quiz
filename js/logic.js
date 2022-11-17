@@ -4,7 +4,7 @@ var time = questions.length * 15;
 var timerId;
 //DOM element variables
 var timerEl = document.getElementById('time');
-var btnstart = document.getElementById('start');
+var btnStart = document.getElementById('start');
 var btnSubmit = document.getElementById('submit');
 var choicesEl = document.getElementById('choices');
 var questionEl = document.getElementById('questions');
@@ -50,7 +50,7 @@ choiceNode.textContent = i + 1 + '. ' + choice;
 choicesEl.appendChild(choiceNode);
 }
 }
-
+// click event functions (sound file also)
 function questionClick(event) {
     var buttonEl = event.target;
     if (!buttonEl.matches('.choice')) {
@@ -82,15 +82,46 @@ function questionClick(event) {
         getQuestion();
     }
     }
-
+// end quiz function
     function quizEnd ();{
         clearInterval(timerId);
         var endScreenEl = document.getElementById('end-screen');
         endScreenEl.removeAttribute('class');
         var finalScore = document.getElementById('final-score');
         finalScore.textContent = time;
-        ques
+        questionEl.setAttribute('class', 'hide');
     }
+
+    //high score function
+
+    function saveHiscore() {
+        var playerNames = nameEl.value.trim();
+        if (playerNames !== ''){
+            var hiscores = JSON.parse(window.localStorage.getItem('hiscores')) || [];
+            var newScore = {
+                score: time,
+                playerName: playerName,
+            };
+            highscores.push(newScore);
+    window.localStorage.setItem('highscores', JSON.stringify(highscores)); // this might give you trouble come back to it
+    window.location.href = 'hi-score.html';
+            
+        }
+
+    }
+
+    function checkForEnter(event) {
+        if (event.key === 'Enter') {
+          saveHiscore();
+        }
+      }
+
+      btnSubmit.onclick = saveHiscore;
+      btnStart.onclick = startQuiz;
+      choicesEl.onclick = questionClick;
+      nameEl.onkeyup = checkForEnter;
+
+
 
 
 
