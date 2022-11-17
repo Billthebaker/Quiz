@@ -10,10 +10,23 @@
 </head>
 
 <body>
-    <a href="/hi-score.html">Leaderboard!</a>
+    <div class="scores"><a href="/hi-score.html">Leaderboard!</a></div>
+    <div class="timer">Time Remaining: <span id="time">0</span></div>
+    <div class="wrapper">
+        <div id="start-screen" class="start">
     <h1>5 QUESTIONS</h1>
     <p> This quiz will contain 5 questions from all different subjects. You will have a small amount of time to complete this task, good luck!</p>
     <button id="start">Lets do it!</button>
-    
+    </div>
+
+    <div id="questions" class="hide">
+        <h2 id="question-title"></h2>
+        <div id="choices" class="choices"></div>
+      </div>
 </body>
 </html>
+
+<div id="end-screen" class="hide">
+    <h2>Finished!</h2>
+    <p>Your end score is <span id="final-score"></span>.</p>
+</div>
