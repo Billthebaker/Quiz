@@ -1,5 +1,5 @@
 function printScores(){
-var highscores = JSON.parse(window.localStorage.getItem('hi-score')) || [];
+var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
 highscores.sort(function (a, b) {
     return b.score - a.score;
   });

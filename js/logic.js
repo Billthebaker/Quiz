@@ -1,5 +1,4 @@
-// time and question variables
-var currentQuestionIndex = 0;
+var currentQuestionIndex = 0
 var time = questions.length * 15;
 var timerId;
 //DOM element variables
@@ -9,7 +8,7 @@ var btnSubmit = document.getElementById('submit');
 var choicesEl = document.getElementById('choices');
 var questionEl = document.getElementById('questions');
 var feedbackEl = document.getElementById('feedback');
-var nameEl = document.getElementById('playerName');
+var initialEl = document.getElementById('initials');
 var sfxCorrect = new Audio('sfx/correct.mp3');
 var sfxWrong = new Audio('sfx/wrong.mp3');
 
@@ -17,7 +16,7 @@ var sfxWrong = new Audio('sfx/wrong.mp3');
 function startQuiz() {
     var beginScreenEl = document.getElementById('start-screen');
     beginScreenEl.setAttribute('class', 'hide');
-    questionEl.removeAttribute('hide'); // come back to this one 
+    questionEl.removeAttribute('class'); // come back to this one 
     timerId = setInterval(countDown, 1000);
     timerEl.textContent = time;
     getQuestion();
@@ -35,8 +34,8 @@ function countDown() {
 }
 // pull question function
 function getQuestion() {
-var currentQuestion = questions[currentQuestionIndex]
-var titleEl = document.getElementById('questions-title');
+var currentQuestion = questions[currentQuestionIndex];
+var titleEl = document.getElementById('question-title');
 titleEl.textContent = currentQuestion.title;
 
 choicesEl.innerHTML = '';
@@ -48,7 +47,7 @@ choiceNode.setAttribute('class','choice');
 choiceNode.setAttribute('value', choice);
 choiceNode.textContent = i + 1 + '. ' + choice;
 choicesEl.appendChild(choiceNode);
-}
+  }
 }
 // click event functions (sound file also)
 function questionClick(event) {
@@ -83,7 +82,7 @@ function questionClick(event) {
     }
     }
 // end quiz function
-    function quizEnd ();{
+    function quizEnd (){
         clearInterval(timerId);
         var endScreenEl = document.getElementById('end-screen');
         endScreenEl.removeAttribute('class');
@@ -94,17 +93,17 @@ function questionClick(event) {
 
     //high score function
 
-    function saveHiscore() {
-        var playerNames = nameEl.value.trim();
-        if (playerNames !== ''){
-            var hiscores = JSON.parse(window.localStorage.getItem('hiscores')) || [];
+    function saveHighscore() {
+        var initials = initialEl.value.trim();
+        if (initials !== ''){
+            var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
             var newScore = {
                 score: time,
-                playerName: playerName,
+                initials: initials,
             };
             highscores.push(newScore);
     window.localStorage.setItem('highscores', JSON.stringify(highscores)); // this might give you trouble come back to it
-    window.location.href = 'hi-score.html';
+    window.location.href = 'highscores.html';
             
         }
 
@@ -112,19 +111,13 @@ function questionClick(event) {
 
     function checkForEnter(event) {
         if (event.key === 'Enter') {
-          saveHiscore();
+          saveHighscore();
         }
       }
 
-      btnSubmit.onclick = saveHiscore;
+      btnSubmit.onclick = saveHighscore;
       btnStart.onclick = startQuiz;
       choicesEl.onclick = questionClick;
-      nameEl.onkeyup = checkForEnter;
-
-
-
-
-
-
+      initialEl.onkeyup = checkForEnter;
 
 
