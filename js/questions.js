@@ -29,6 +29,6 @@ var questions = [
       title:
         'A wolf caught in the trap will ____ to survive',
       choices: ['scream for help', 'chew off its own leg', 'play poker', 'dig a shelter for safety'],
-      answer: 'console.log',
+      answer: 'chew off its own leg',
     },
   ];
