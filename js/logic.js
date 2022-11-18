@@ -17,7 +17,7 @@ function startQuiz() {
     var beginScreenEl = document.getElementById('start-screen');
     beginScreenEl.setAttribute('class', 'hide');
     questionEl.removeAttribute('class'); // come back to this one 
-    timerId = setInterval(countDown, 1000);
+    timerId = setInterval(countDown, 11000);
     timerEl.textContent = time;
     getQuestion();
 
@@ -25,7 +25,7 @@ function startQuiz() {
 }
 //Timer Function
 function countDown() {
-    time--;
+    time --;
     timerEl.textContent = time;
 
     if(time <=0){
@@ -66,7 +66,7 @@ function questionClick(event) {
         feedbackEl.textContent = 'Incorrect.';
     }else{
         sfxCorrect.play();
-        feedbackEl.textContent = 'That is Correct!!';
+        feedbackEl.textContent = 'You got it!!';
     }
     feedbackEl.setAttribute('class', 'feedback');
     setTimeout(function() {
